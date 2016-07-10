@@ -1,0 +1,17 @@
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\bin\Debug\QuanLySach_VPP.exe.config
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\bin\Debug\QuanLySach_VPP.exe
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\bin\Debug\QuanLySach_VPP.pdb
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\bin\Debug\EntityFramework.dll
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\bin\Debug\EntityFramework.SqlServer.dll
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\bin\Debug\EntityFramework.xml
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\bin\Debug\EntityFramework.SqlServer.xml
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.frmDangNhap.resources
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.frmMain.resources
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.Properties.Resources.resources
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.frmQLDanhMuc.resources
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.frmQLSanPham.resources
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.csproj.GenerateResource.Cache
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.exe
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.pdb
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.csprojResolveAssemblyReference.cache
+D:\DayThem\Management-book-store-windown-form\QuanLySach_VPP\QuanLySach_VPP\obj\Debug\QuanLySach_VPP.frmQLHoaDon.resources

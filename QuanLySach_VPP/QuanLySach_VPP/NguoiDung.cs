@@ -20,7 +20,7 @@ namespace QuanLySach_VPP
             this.HoaDons = new HashSet<HoaDon>();
         }
     
-        public string MaNguoiDung { get; set; }
+        public int MaNguoiDung { get; set; }
         public string TenNguoiDung { get; set; }
         public string GioiTinh { get; set; }
         public string TenDangNhap { get; set; }

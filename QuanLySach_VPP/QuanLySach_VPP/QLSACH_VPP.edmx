@@ -4,21 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QLSACH_VPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QLSACH_VPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietHoaDon">
           <Key>
             <PropertyRef Name="MaHoaDon" />
             <PropertyRef Name="MaSanPham" />
           </Key>
-          <Property Name="MaHoaDon" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MaSanPham" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaHoaDon" Type="int" Nullable="false" />
+          <Property Name="MaSanPham" Type="int" Nullable="false" />
           <Property Name="SoLuong" Type="int" />
         </EntityType>
         <EntityType Name="DanhMuc">
           <Key>
             <PropertyRef Name="MaDanhMuc" />
           </Key>
-          <Property Name="MaDanhMuc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaDanhMuc" Type="int" Nullable="false" />
           <Property Name="TenDanhMuc" Type="nvarchar" MaxLength="50" />
           <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
         </EntityType>
@@ -26,8 +26,8 @@
           <Key>
             <PropertyRef Name="MaHoaDon" />
           </Key>
-          <Property Name="MaHoaDon" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="NguoiLap" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaHoaDon" Type="int" Nullable="false" />
+          <Property Name="NguoiLap" Type="int" />
           <Property Name="NgayLap" Type="date" />
           <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="MaNguoiDung" />
           </Key>
-          <Property Name="MaNguoiDung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaNguoiDung" Type="int" Nullable="false" />
           <Property Name="TenNguoiDung" Type="nvarchar" MaxLength="50" />
           <Property Name="GioiTinh" Type="nvarchar" MaxLength="50" />
           <Property Name="TenDangNhap" Type="nvarchar" MaxLength="50" />
@@ -46,11 +46,11 @@
           <Key>
             <PropertyRef Name="MaSanPham" />
           </Key>
-          <Property Name="MaSanPham" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaSanPham" Type="int" Nullable="false" />
           <Property Name="TenSanPham" Type="nvarchar" MaxLength="50" />
           <Property Name="NhaSanXuat" Type="nvarchar" MaxLength="50" />
           <Property Name="SoLuong" Type="int" />
-          <Property Name="MaDanhMuc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaDanhMuc" Type="int" Nullable="false" />
           <Property Name="GiaBan" Type="float" />
           <Property Name="TacGia" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -125,93 +125,71 @@
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLSACH_VPPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="QLSACH_VPPEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ChiTietHoaDons" EntityType="QLSACH_VPPModel.ChiTietHoaDon" />
-          <EntitySet Name="DanhMucs" EntityType="QLSACH_VPPModel.DanhMuc" />
-          <EntitySet Name="HoaDons" EntityType="QLSACH_VPPModel.HoaDon" />
-          <EntitySet Name="NguoiDungs" EntityType="QLSACH_VPPModel.NguoiDung" />
-          <EntitySet Name="SanPhams" EntityType="QLSACH_VPPModel.SanPham" />
-          <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="QLSACH_VPPModel.FK_ChiTietHoaDon_HoaDon">
-            <End Role="HoaDon" EntitySet="HoaDons" />
-            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="QLSACH_VPPModel.FK_ChiTietHoaDon_SanPham">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SanPham_DanhMuc" Association="QLSACH_VPPModel.FK_SanPham_DanhMuc">
-            <End Role="DanhMuc" EntitySet="DanhMucs" />
-            <End Role="SanPham" EntitySet="SanPhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HoaDon_NguoiDung" Association="QLSACH_VPPModel.FK_HoaDon_NguoiDung">
-            <End Role="NguoiDung" EntitySet="NguoiDungs" />
-            <End Role="HoaDon" EntitySet="HoaDons" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="ChiTietHoaDon">
           <Key>
             <PropertyRef Name="MaHoaDon" />
             <PropertyRef Name="MaSanPham" />
           </Key>
-          <Property Name="MaHoaDon" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaSanPham" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaHoaDon" Type="Int32" Nullable="false" />
+          <Property Name="MaSanPham" Type="Int32" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" />
-          <NavigationProperty Name="HoaDon" Relationship="QLSACH_VPPModel.FK_ChiTietHoaDon_HoaDon" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
-          <NavigationProperty Name="SanPham" Relationship="QLSACH_VPPModel.FK_ChiTietHoaDon_SanPham" FromRole="ChiTietHoaDon" ToRole="SanPham" />
+          <NavigationProperty Name="HoaDon" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_ChiTietHoaDon_SanPham" FromRole="ChiTietHoaDon" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="DanhMuc">
           <Key>
             <PropertyRef Name="MaDanhMuc" />
           </Key>
-          <Property Name="MaDanhMuc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaDanhMuc" Type="Int32" Nullable="false" />
           <Property Name="TenDanhMuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SanPhams" Relationship="QLSACH_VPPModel.FK_SanPham_DanhMuc" FromRole="DanhMuc" ToRole="SanPham" />
+          <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_DanhMuc" FromRole="DanhMuc" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="HoaDon">
           <Key>
             <PropertyRef Name="MaHoaDon" />
           </Key>
-          <Property Name="MaHoaDon" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NguoiLap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaHoaDon" Type="Int32" Nullable="false" />
+          <Property Name="NguoiLap" Type="Int32" />
           <Property Name="NgayLap" Type="DateTime" Precision="0" />
           <Property Name="TongTien" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="QLSACH_VPPModel.FK_ChiTietHoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
-          <NavigationProperty Name="NguoiDung" Relationship="QLSACH_VPPModel.FK_HoaDon_NguoiDung" FromRole="HoaDon" ToRole="NguoiDung" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_HoaDon_NguoiDung" FromRole="HoaDon" ToRole="NguoiDung" />
         </EntityType>
         <EntityType Name="NguoiDung">
           <Key>
             <PropertyRef Name="MaNguoiDung" />
           </Key>
-          <Property Name="MaNguoiDung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaNguoiDung" Type="Int32" Nullable="false" />
           <Property Name="TenNguoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GioiTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Tuoi" Type="Int32" />
           <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="HoaDons" Relationship="QLSACH_VPPModel.FK_HoaDon_NguoiDung" FromRole="NguoiDung" ToRole="HoaDon" />
+          <NavigationProperty Name="HoaDons" Relationship="Self.FK_HoaDon_NguoiDung" FromRole="NguoiDung" ToRole="HoaDon" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
             <PropertyRef Name="MaSanPham" />
           </Key>
-          <Property Name="MaSanPham" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaSanPham" Type="Int32" Nullable="false" />
           <Property Name="TenSanPham" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NhaSanXuat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SoLuong" Type="Int32" />
-          <Property Name="MaDanhMuc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaDanhMuc" Type="Int32" Nullable="false" />
           <Property Name="GiaBan" Type="Double" />
           <Property Name="TacGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="QLSACH_VPPModel.FK_ChiTietHoaDon_SanPham" FromRole="SanPham" ToRole="ChiTietHoaDon" />
-          <NavigationProperty Name="DanhMuc" Relationship="QLSACH_VPPModel.FK_SanPham_DanhMuc" FromRole="SanPham" ToRole="DanhMuc" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_ChiTietHoaDon_SanPham" FromRole="SanPham" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="DanhMuc" Relationship="Self.FK_SanPham_DanhMuc" FromRole="SanPham" ToRole="DanhMuc" />
         </EntityType>
         <Association Name="FK_ChiTietHoaDon_HoaDon">
-          <End Type="QLSACH_VPPModel.HoaDon" Role="HoaDon" Multiplicity="1" />
-          <End Type="QLSACH_VPPModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
+          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HoaDon">
               <PropertyRef Name="MaHoaDon" />
@@ -222,8 +200,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChiTietHoaDon_SanPham">
-          <End Type="QLSACH_VPPModel.SanPham" Role="SanPham" Multiplicity="1" />
-          <End Type="QLSACH_VPPModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SanPham">
               <PropertyRef Name="MaSanPham" />
@@ -234,8 +212,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SanPham_DanhMuc">
-          <End Type="QLSACH_VPPModel.DanhMuc" Role="DanhMuc" Multiplicity="1" />
-          <End Type="QLSACH_VPPModel.SanPham" Role="SanPham" Multiplicity="*" />
+          <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="1" />
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DanhMuc">
               <PropertyRef Name="MaDanhMuc" />
@@ -246,8 +224,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_HoaDon_NguoiDung">
-          <End Type="QLSACH_VPPModel.NguoiDung" Role="NguoiDung" Multiplicity="0..1" />
-          <End Type="QLSACH_VPPModel.HoaDon" Role="HoaDon" Multiplicity="*" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NguoiDung">
               <PropertyRef Name="MaNguoiDung" />
@@ -257,62 +235,85 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="QLSACH_VPPEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
+          <EntitySet Name="DanhMucs" EntityType="Self.DanhMuc" />
+          <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+          <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+          <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="Self.FK_ChiTietHoaDon_HoaDon">
+            <End Role="HoaDon" EntitySet="HoaDons" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="Self.FK_ChiTietHoaDon_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SanPham_DanhMuc" Association="Self.FK_SanPham_DanhMuc">
+            <End Role="DanhMuc" EntitySet="DanhMucs" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HoaDon_NguoiDung" Association="Self.FK_HoaDon_NguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QLSACH_VPPModelStoreContainer" CdmEntityContainer="QLSACH_VPPEntities1">
+        <EntityContainerMapping StorageEntityContainer="QLSACH_VPPModelStoreContainer" CdmEntityContainer="QLSACH_VPPEntities2">
           <EntitySetMapping Name="ChiTietHoaDons">
             <EntityTypeMapping TypeName="QLSACH_VPPModel.ChiTietHoaDon">
               <MappingFragment StoreEntitySet="ChiTietHoaDon">
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
                 <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+                <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DanhMucs">
             <EntityTypeMapping TypeName="QLSACH_VPPModel.DanhMuc">
               <MappingFragment StoreEntitySet="DanhMuc">
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
                 <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
+                <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="QLSACH_VPPModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
-                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-                <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
-                <ScalarProperty Name="NguoiLap" ColumnName="NguoiLap" />
                 <ScalarProperty Name="MaHoaDon" ColumnName="MaHoaDon" />
+                <ScalarProperty Name="NguoiLap" ColumnName="NguoiLap" />
+                <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NguoiDungs">
             <EntityTypeMapping TypeName="QLSACH_VPPModel.NguoiDung">
               <MappingFragment StoreEntitySet="NguoiDung">
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
-                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
-                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
-                <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />
                 <ScalarProperty Name="MaNguoiDung" ColumnName="MaNguoiDung" />
+                <ScalarProperty Name="TenNguoiDung" ColumnName="TenNguoiDung" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+                <ScalarProperty Name="Tuoi" ColumnName="Tuoi" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SanPhams">
             <EntityTypeMapping TypeName="QLSACH_VPPModel.SanPham">
               <MappingFragment StoreEntitySet="SanPham">
-                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
-                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
-                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="NhaSanXuat" ColumnName="NhaSanXuat" />
-                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
                 <ScalarProperty Name="MaSanPham" ColumnName="MaSanPham" />
+                <ScalarProperty Name="TenSanPham" ColumnName="TenSanPham" />
+                <ScalarProperty Name="NhaSanXuat" ColumnName="NhaSanXuat" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaDanhMuc" ColumnName="MaDanhMuc" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

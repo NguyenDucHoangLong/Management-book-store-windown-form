@@ -14,8 +14,8 @@ namespace QuanLySach_VPP
     
     public partial class ChiTietHoaDon
     {
-        public string MaHoaDon { get; set; }
-        public string MaSanPham { get; set; }
+        public int MaHoaDon { get; set; }
+        public int MaSanPham { get; set; }
         public Nullable<int> SoLuong { get; set; }
     
         public virtual HoaDon HoaDon { get; set; }

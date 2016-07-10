@@ -13,10 +13,10 @@ namespace QuanLySach_VPP
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QLSACH_VPPEntities1 : DbContext
+    public partial class QLSACH_VPPEntities2 : DbContext
     {
-        public QLSACH_VPPEntities1()
-            : base("name=QLSACH_VPPEntities1")
+        public QLSACH_VPPEntities2()
+            : base("name=QLSACH_VPPEntities2")
         {
         }
     

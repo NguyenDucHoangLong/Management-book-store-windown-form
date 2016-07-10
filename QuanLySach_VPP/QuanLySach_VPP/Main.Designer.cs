@@ -32,8 +32,8 @@
             this.quảnLýDanhMụcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýSảnPhẩmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýHóaĐơnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêBánHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +70,13 @@
             this.quảnLýHóaĐơnToolStripMenuItem.Name = "quảnLýHóaĐơnToolStripMenuItem";
             this.quảnLýHóaĐơnToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.quảnLýHóaĐơnToolStripMenuItem.Text = "Quản lý hóa đơn";
+            this.quảnLýHóaĐơnToolStripMenuItem.Click += new System.EventHandler(this.quảnLýHóaĐơnToolStripMenuItem_Click);
+            // 
+            // thốngKêBánHàngToolStripMenuItem
+            // 
+            this.thốngKêBánHàngToolStripMenuItem.Name = "thốngKêBánHàngToolStripMenuItem";
+            this.thốngKêBánHàngToolStripMenuItem.Size = new System.Drawing.Size(122, 20);
+            this.thốngKêBánHàngToolStripMenuItem.Text = "Thống kê bán hàng";
             // 
             // đăngXuấtToolStripMenuItem
             // 
@@ -77,12 +84,6 @@
             this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
-            // 
-            // thốngKêBánHàngToolStripMenuItem
-            // 
-            this.thốngKêBánHàngToolStripMenuItem.Name = "thốngKêBánHàngToolStripMenuItem";
-            this.thốngKêBánHàngToolStripMenuItem.Size = new System.Drawing.Size(122, 20);
-            this.thốngKêBánHàngToolStripMenuItem.Text = "Thống kê bán hàng";
             // 
             // frmMain
             // 

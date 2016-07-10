@@ -20,7 +20,7 @@ namespace QuanLySach_VPP
             this.SanPhams = new HashSet<SanPham>();
         }
     
-        public string MaDanhMuc { get; set; }
+        public int MaDanhMuc { get; set; }
         public string TenDanhMuc { get; set; }
         public string MoTa { get; set; }
     

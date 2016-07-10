@@ -13,7 +13,7 @@ namespace QuanLySach_VPP
     public partial class frmQLSanPham : Form
     {
 
-        readonly QLSACH_VPPEntities1 db = new QLSACH_VPPEntities1();
+        readonly QLSACH_VPPEntities2 db = new QLSACH_VPPEntities2();
 
         public frmQLSanPham()
         {
@@ -130,29 +130,38 @@ namespace QuanLySach_VPP
 
             try
             {
-                var sanpham = new SanPham
+                int wMaSanPham = 0;
+                Boolean wResult = Int32.TryParse(txtMaSanPham.Text, out wMaSanPham);
+                if(wResult)
                 {
-                    MaSanPham = txtMaSanPham.Text,
-                    TenSanPham = txtTenSanPham.Text,
-                    NhaSanXuat = txtNhaSanXuat.Text,
-                    TacGia = txtTacGia.Text,
-                    SoLuong = int.Parse(txtSoLuong.Text),
-                    GiaBan = int.Parse(txtGia.Text)
-                    ,
-                    MaDanhMuc = (from danhmuc in db.DanhMucs
-                                 where danhmuc.TenDanhMuc == cbxDanhMuc.Text
-                                 select danhmuc.MaDanhMuc).SingleOrDefault()
-                };
+                    var sanpham = new SanPham
+                    {
+                        MaSanPham = wMaSanPham,
+                        TenSanPham = txtTenSanPham.Text,
+                        NhaSanXuat = txtNhaSanXuat.Text,
+                        TacGia = txtTacGia.Text,
+                        SoLuong = int.Parse(txtSoLuong.Text),
+                        GiaBan = int.Parse(txtGia.Text)
+    ,
+                        MaDanhMuc = (from danhmuc in db.DanhMucs
+                                     where danhmuc.TenDanhMuc == cbxDanhMuc.Text
+                                     select danhmuc.MaDanhMuc).SingleOrDefault()
+                    };
 
-                //Kiểm tra trong database đã có dữ liệu chưa, nếu chưa có thì thêm vào
-                if (db.SanPhams.Find(sanpham.MaSanPham) == null)
-                {
-                    db.SanPhams.Add(sanpham);
-                    db.SaveChanges();
+                    //Kiểm tra trong database đã có dữ liệu chưa, nếu chưa có thì thêm vào
+                    if (db.SanPhams.Find(sanpham.MaSanPham) == null)
+                    {
+                        db.SanPhams.Add(sanpham);
+                        db.SaveChanges();
+                        MessageBox.Show("Thêm thành công", "Thông báo",
+    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sản phẩm đã tồn tại", "Thông báo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
-                    MessageBox.Show("Sản phẩm đã tồn tại", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -173,25 +182,34 @@ namespace QuanLySach_VPP
             }
             try
             {
-                string MaSanPham = txtMaSanPham.Text;
-                if (string.IsNullOrEmpty(MaSanPham))
-                    return;
-                var sanpham = db.SanPhams.Find(MaSanPham);
-                if (sanpham != null)
+                int wMaSanPham = 0;
+                Boolean wResult = Int32.TryParse(txtMaSanPham.Text, out wMaSanPham);
+                if (wResult)
                 {
-                    sanpham.TenSanPham = txtTenSanPham.Text;
-                    sanpham.NhaSanXuat = txtNhaSanXuat.Text;
-                    sanpham.TacGia = txtTacGia.Text;
-                    sanpham.SoLuong = int.Parse(txtSoLuong.Text);
-                    sanpham.GiaBan = float.Parse(txtGia.Text);
-                    sanpham.MaDanhMuc = (from danhmuc in db.DanhMucs
-                                         where danhmuc.TenDanhMuc == cbxDanhMuc.Text
-                                         select danhmuc.MaDanhMuc).SingleOrDefault();
-                    db.SaveChanges();
+                    if(wMaSanPham == 0)
+                    {
+                        return;
+                    }
+                    var sanpham = db.SanPhams.Find(wMaSanPham);
+                    if (sanpham != null)
+                    {
+                        sanpham.TenSanPham = txtTenSanPham.Text;
+                        sanpham.NhaSanXuat = txtNhaSanXuat.Text;
+                        sanpham.TacGia = txtTacGia.Text;
+                        sanpham.SoLuong = int.Parse(txtSoLuong.Text);
+                        sanpham.GiaBan = float.Parse(txtGia.Text);
+                        sanpham.MaDanhMuc = (from danhmuc in db.DanhMucs
+                                             where danhmuc.TenDanhMuc == cbxDanhMuc.Text
+                                             select danhmuc.MaDanhMuc).SingleOrDefault();
+                        db.SaveChanges();
+                        MessageBox.Show("Cập nhật thành công", "Thông báo",
+    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không cập nhật được!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else
-                    MessageBox.Show("Không cập nhật được!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -211,20 +229,26 @@ namespace QuanLySach_VPP
             }
             try
             {
-                string MaSanPham = txtMaSanPham.Text;
-                if (string.IsNullOrEmpty(MaSanPham))
-                    return;
-                var sanpham = db.SanPhams.Find(MaSanPham);
-                if (sanpham != null)
+                int wMaSanPham = 0;
+                Boolean wResult = Int32.TryParse(txtMaSanPham.Text, out wMaSanPham);
+                if (wResult)
                 {
-                    db.SanPhams.Remove(sanpham);
-                    db.SaveChanges();
-                    MessageBox.Show("Xóa sản phẩm thành công", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (wMaSanPham == 0)
+                    {
+                        return;
+                    }
+                    var sanpham = db.SanPhams.Find(wMaSanPham);
+                    if (sanpham != null)
+                    {
+                        db.SanPhams.Remove(sanpham);
+                        db.SaveChanges();
+                        MessageBox.Show("Xóa sản phẩm thành công", "Thông báo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                        MessageBox.Show("Không xóa được, vui lòng thử lại!!",
+                            "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
-                    MessageBox.Show("Không xóa được, vui lòng thử lại!!",
-                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -238,10 +262,13 @@ namespace QuanLySach_VPP
         {
             try
             {
-                var sanpham = db.SanPhams.Where(sp => sp.DanhMuc.TenDanhMuc == cbxDanhMuc.Text).ToList();
-                if(sanpham != null)
+                var lstSanPham = db.SanPhams
+                    .Where(sanpham => sanpham.DanhMuc.TenDanhMuc == cbxDanhMuc.Text.ToString())
+                    .ToList();
+
+                if(lstSanPham != null)
                 {
-                    dtgvSanPham.DataSource = sanpham;
+                    dtgvSanPham.DataSource = lstSanPham;
                 }
                 else
                     MessageBox.Show("Không tìm thấy!!",

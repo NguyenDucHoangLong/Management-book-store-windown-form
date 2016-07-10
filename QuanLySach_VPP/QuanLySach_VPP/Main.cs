@@ -38,5 +38,12 @@ namespace QuanLySach_VPP
             frmDnhap.ShowDialog();
             this.Close();
         }
+
+        private void quảnLýHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmQLHoaDon frmQLHoaDon = new frmQLHoaDon();
+            frmQLHoaDon.MdiParent = this;
+            frmQLHoaDon.Show();
+        }
     }
 }

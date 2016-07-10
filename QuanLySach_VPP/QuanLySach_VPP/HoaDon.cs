@@ -20,8 +20,8 @@ namespace QuanLySach_VPP
             this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
         }
     
-        public string MaHoaDon { get; set; }
-        public string NguoiLap { get; set; }
+        public int MaHoaDon { get; set; }
+        public Nullable<int> NguoiLap { get; set; }
         public Nullable<System.DateTime> NgayLap { get; set; }
         public Nullable<decimal> TongTien { get; set; }
     

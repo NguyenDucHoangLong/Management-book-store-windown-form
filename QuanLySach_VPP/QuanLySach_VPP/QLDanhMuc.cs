@@ -12,7 +12,7 @@ namespace QuanLySach_VPP
 {
     public partial class frmQLDanhMuc : Form
     {
-        readonly QLSACH_VPPEntities1 db = new QLSACH_VPPEntities1();
+        readonly QLSACH_VPPEntities2 db = new QLSACH_VPPEntities2();
 
         public frmQLDanhMuc()
         {
@@ -72,22 +72,31 @@ namespace QuanLySach_VPP
 
             try
             {
-                var danhmuc = new DanhMuc
+                int wMaDanhMuc = 0;
+                Boolean wResult = Int32.TryParse(txtMaDanhMuc.Text.ToString(), out wMaDanhMuc);
+                if(wResult == true)
                 {
-                    MaDanhMuc = txtMaDanhMuc.Text,
-                    TenDanhMuc = txtTenDanhMuc.Text,
-                    MoTa = txtMoTaDanhMuc.Text
-                };
+                    var danhmuc = new DanhMuc
+                    {
+                        MaDanhMuc = wMaDanhMuc,
+                        TenDanhMuc = txtTenDanhMuc.Text.ToString(),
+                        MoTa = txtMoTaDanhMuc.Text.ToString()
+                    };
 
-                //Kiêm tra đã có Tên danh mục trong dữ liệu chưa, nếu chưa có thì thêm vào database
-                if (db.DanhMucs.Find(danhmuc.MaDanhMuc) == null)
-                {
-                    db.DanhMucs.Add(danhmuc);
-                    db.SaveChanges();
+                    //Kiêm tra đã có Tên danh mục trong dữ liệu chưa, nếu chưa có thì thêm vào database
+                    if (db.DanhMucs.Where(dm => dm.MaDanhMuc == danhmuc.MaDanhMuc || dm.TenDanhMuc == danhmuc.TenDanhMuc).ToList().Count == 0)
+                    {
+                        db.DanhMucs.Add(danhmuc);
+                        db.SaveChanges();
+                        MessageBox.Show("Thêm thành công", "Thông báo",
+    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Danh mục đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                 }
-                else
-                    MessageBox.Show("Danh mục đã tồn tại", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -118,21 +127,28 @@ namespace QuanLySach_VPP
             }
             try
             {
-                string MaDanhMuc = txtMaDanhMuc.Text;
-                if (string.IsNullOrEmpty(MaDanhMuc))
-                    return;
-                var danhmuc = db.DanhMucs.Find(MaDanhMuc);
-                if (danhmuc != null)
+                int wMaDanhMuc = 0;
+                Boolean wResult = Int32.TryParse(txtMaDanhMuc.Text.ToString(), out wMaDanhMuc);
+                if (wResult == true)
                 {
-                    danhmuc.TenDanhMuc = txtTenDanhMuc.Text;
-                    danhmuc.MoTa = txtMoTaDanhMuc.Text;
-                    db.SaveChanges();
-                    MessageBox.Show("Cập nhật thành công", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (wMaDanhMuc == 0)
+                        return;
+
+                    var danhmuc = db.DanhMucs.Find(wMaDanhMuc);
+                    if (danhmuc != null)
+                    {
+                        danhmuc.TenDanhMuc = txtTenDanhMuc.Text;
+                        danhmuc.MoTa = txtMoTaDanhMuc.Text;
+                        db.SaveChanges();
+                        MessageBox.Show("Cập nhật thành công", "Thông báo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không cập nhật được!", "Thông báo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
-                    MessageBox.Show("Không cập nhật được!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -152,21 +168,26 @@ namespace QuanLySach_VPP
             }
             try
             {
-                string MaDanhMuc = txtMaDanhMuc.Text;
-                if (string.IsNullOrEmpty(MaDanhMuc))
-                    return;
-                var danhmuc = db.DanhMucs.Find(MaDanhMuc);
-                var sanpham = db.SanPhams.Where(dm => dm.MaDanhMuc == MaDanhMuc);
-                if (danhmuc != null && sanpham == null)
+                int wMaDanhMuc = 0;
+                Boolean wResult = Int32.TryParse(txtMaDanhMuc.Text, out wMaDanhMuc);
+
+                if(wResult)
                 {
-                    db.DanhMucs.Remove(danhmuc);
-                    db.SaveChanges();
-                    MessageBox.Show("Xóa danh mục thành công", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (wMaDanhMuc == 0)
+                        return;
+                    var danhmuc = db.DanhMucs.Find(wMaDanhMuc);
+                    var sanpham = db.SanPhams.Where(dm => dm.MaDanhMuc == wMaDanhMuc).ToList();
+                    if (danhmuc != null && sanpham.Count == 0)
+                    {
+                        db.DanhMucs.Remove(danhmuc);
+                        db.SaveChanges();
+                        MessageBox.Show("Xóa danh mục thành công", "Thông báo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                        MessageBox.Show("Vui lòng xóa sản phẩm trong danh mục trước khi xóa danh mục",
+                            "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else
-                    MessageBox.Show("Vui lòng xóa sản phẩm trong danh mục trước khi xóa danh mục",
-                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

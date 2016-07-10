@@ -20,11 +20,11 @@ namespace QuanLySach_VPP
             this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
         }
     
-        public string MaSanPham { get; set; }
+        public int MaSanPham { get; set; }
         public string TenSanPham { get; set; }
         public string NhaSanXuat { get; set; }
         public Nullable<int> SoLuong { get; set; }
-        public string MaDanhMuc { get; set; }
+        public int MaDanhMuc { get; set; }
         public Nullable<double> GiaBan { get; set; }
         public string TacGia { get; set; }
     

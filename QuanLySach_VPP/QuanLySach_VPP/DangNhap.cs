@@ -12,7 +12,7 @@ namespace QuanLySach_VPP
 {
     public partial class frmDangNhap : Form
     {
-        QLSACH_VPPEntities1 db = new QLSACH_VPPEntities1();
+        QLSACH_VPPEntities2 db = new QLSACH_VPPEntities2();
         public frmDangNhap()
         {
             InitializeComponent();
